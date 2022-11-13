@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Оценка ИП</title>
+        <meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'main/index.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="shortcut icon" type="image/png" href="{% static 'main/media/favicon.ico' %}"/>
+    </head>
+    <body>
+        <div class="top">
+            <div class="d-flex mx-5 my-3">
+                <img src="{% static 'main/media/logo.svg' %}">
+                <h3 class="title mx-4 my-2">Определение доходности ИП</h3>
+            </div>
+
+            <h1 class="w-25 mx-5 my-2">
+                Быстрая и эффективная оценка ИП для выбора финансовой программы
+            </h1>
+
+            <form class="search w-50 my-5 mx-5 d-flex flex-row-reverse" method="get">
+                <input class="py-2 px-4" type="submit" value="Найти">
+                <input name='q' type="text" class="form-control" placeholder="Искать ИП по ИНН...">
+            </div>
+        </div>
+
+        <div class="content">
+            {% if show_result %}
+                {% if found %}
+                    <div class="ip-info w-75 mx-auto my-5">
+                        <div class="m-4">
+                            <h2>ИНН</h2>
+                            <h4>{{ INN }}</h4>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <div class="m-4 w-25">
+                                <h4>Дата регистрации</h4>
+                                <h5>{{ registration_date }}</h5>
+                            </div>
+                            <div class="m-4 w-25">
+                                <h4>Регион</h4>
+                                <h5>{{ region }}</h5>
+                            </div>
+                            <div class="m-4 w-25">
+                                <h4>Вид деятельности</h4>
+                                <h5>{{ okved }} - {{ industry }}</h5>
+                            </div>
+                            <div class="m-4 w-25">
+                                <h4>Номер кластера</h4>
+                                <h5>{{ cluster_id }}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ip-info w-75 mx-auto my-5">
+                        <img src="{% static 'main/media/graph.png' %}" class="container w-50 mx-auto my-5 p-0">
+                    </div>
+                {% else %}
+                    <h1 class="container mx-auto my-5" align="center">Ничего не найдено</h1>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    </body>
+</html>
